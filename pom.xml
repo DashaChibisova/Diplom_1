@@ -47,6 +47,7 @@
                 <configuration>
                     <excludes>
                         <exclude>**/Praktikum.class</exclude>
+                        <exclude>**/Database.class</exclude>
                     </excludes>
                 </configuration>
                 <executions>
