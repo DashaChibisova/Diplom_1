@@ -21,8 +21,6 @@ public class BurgerTest {
 
     @Mock
     private Bun mokBun;
-    @Mock
-    private Burger mokBurger;
 
     @Test
     public void addIngredientTest() {
@@ -61,14 +59,13 @@ public class BurgerTest {
         Assert.assertEquals(expected, burger.getPrice(), delta);
     }
 
-    //Хз хренова цена
     @Test
     public void getReceiptTest() {
         addIngredientMock(1);
         burger.setBuns(mokBun);
         String nameBurger = "Burger";
         String nameIngredient = "food";
-        String price = "100.6";
+        float price = 100.6f;
         IngredientType type = IngredientType.SAUCE;
         when(mokBun.getName()).thenReturn(nameBurger);
         when(mokIngredient.getType()).thenReturn(type);
@@ -77,7 +74,7 @@ public class BurgerTest {
         Assert.assertThat(burger.getReceipt(), containsString(nameBurger));
         Assert.assertThat(burger.getReceipt(), containsString(String.valueOf(type).toLowerCase()));
         Assert.assertThat(burger.getReceipt(), containsString(nameIngredient));
-       // Assert.assertThat(burger.getReceipt(), containsString(price));
+        Assert.assertThat(burger.getReceipt(), containsString(String.valueOf((int)Math.floor(price))));
 
     }
 
