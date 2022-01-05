@@ -7,8 +7,8 @@ import org.junit.runners.Parameterized;
 
 @RunWith(Parameterized.class)
 public class IngredientTypeTest {
-    private final int type;
-    private final String expected;
+    private int type;
+    private String expected;
 
     public IngredientTypeTest(int type, String expected) {
         this.type = type;

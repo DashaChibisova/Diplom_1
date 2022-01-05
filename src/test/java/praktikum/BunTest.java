@@ -6,16 +6,17 @@ import org.junit.Test;
 
 
 public class BunTest {
-     String name = "Бургер";
-     float price = 7.1f;
-     Bun bun = new Bun(name, price);
+    private String name = "Бургер";
+    private float price = 7.1f;
+    private Bun bun = new Bun(name, price);
 
-     @Test
+    @Test
     public void getNameTest() {
-         Assert.assertEquals(name, bun.getName());
+        Assert.assertEquals(name, bun.getName());
     }
+
     @Test
     public void getPriceTest() {
-        Assert.assertEquals(price, bun.getPrice(),0.0001);
+        Assert.assertEquals(price, bun.getPrice(), 0.0001);
     }
 }
