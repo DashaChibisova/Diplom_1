@@ -12,10 +12,6 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <aspectj.version>1.9.7</aspectj.version>
-        <allure.version>2.15.0</allure.version>
     </properties>
 
     <dependencies>

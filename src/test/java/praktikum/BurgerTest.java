@@ -5,22 +5,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-
-
-import static org.hamcrest.CoreMatchers.containsString;
 import static org.mockito.Mockito.when;
 
 
 @RunWith(MockitoJUnitRunner.class)
-public class BurgerTest {
-    Burger burger = new Burger();
-    private double delta = 0.0001;
+public class BurgerTest extends TestData {
 
     @Mock
-    private Ingredient mokIngredient;
+    private Ingredient mockIngredient;
 
     @Mock
-    private Bun mokBun;
+    private Bun mockBun;
 
     @Test
     public void addIngredientTest() {
@@ -53,35 +48,38 @@ public class BurgerTest {
     public void getPriceTest() {
         addIngredientMock(2);
         float expected = 10;
-        when(mokBun.getPrice()).thenReturn(2f);
-        burger.setBuns(mokBun);
-        when(mokIngredient.getPrice()).thenReturn(3f);
+        when(mockBun.getPrice()).thenReturn(2f);
+        burger.setBuns(mockBun);
+        when(mockIngredient.getPrice()).thenReturn(3f);
         Assert.assertEquals(expected, burger.getPrice(), delta);
     }
 
     @Test
     public void getReceiptTest() {
         addIngredientMock(1);
-        burger.setBuns(mokBun);
+        burger.setBuns(mockBun);
         String nameBurger = "Burger";
         String nameIngredient = "food";
         float price = 100.6f;
+        String priceChek = "100,599998";
+        String chek = "(==== " + nameBurger + " ====)\r\n" +
+                "= sauce " + nameIngredient + " =\r\n" +
+                "(==== " + nameBurger + " ====)\r\n" +
+                "\r\n" + "Price: " + priceChek + "" + "\r\n";
+
         IngredientType type = IngredientType.SAUCE;
-        when(mokBun.getName()).thenReturn(nameBurger);
-        when(mokIngredient.getType()).thenReturn(type);
-        when(mokIngredient.getName()).thenReturn(nameIngredient);
-        when(burger.getPrice()).thenReturn(Float.valueOf(price));
-        Assert.assertThat(burger.getReceipt(), containsString(nameBurger));
-        Assert.assertThat(burger.getReceipt(), containsString(String.valueOf(type).toLowerCase()));
-        Assert.assertThat(burger.getReceipt(), containsString(nameIngredient));
-        Assert.assertThat(burger.getReceipt(), containsString(String.valueOf((int)Math.floor(price))));
+        when(mockBun.getName()).thenReturn(nameBurger);
+        when(mockIngredient.getType()).thenReturn(type);
+        when(mockIngredient.getName()).thenReturn(nameIngredient);
+        when(burger.getPrice()).thenReturn(price);
+        Assert.assertEquals(chek, burger.getReceipt());
 
     }
 
     private void addIngredientMock(int count) {
         for (int i = 1; i <= count; i++) {
-            mokIngredient.price = i;
-            burger.addIngredient(mokIngredient);
+            mockIngredient.price = i;
+            burger.addIngredient(mockIngredient);
         }
     }
 }
